@@ -9,6 +9,9 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to("新規タスク登録", "/posts/new") %>
+    </header>
     <% if flash[:notice] %>
       <div class="flash">
         <%= flash[:notice] %>
