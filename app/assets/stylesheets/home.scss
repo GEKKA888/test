@@ -13,6 +13,17 @@ a {
   font-size: 14px;
 }
 
+
+input {
+  background-color: transparent;
+  outline-width: 0;
+}
+
+form input[type="submit"] {
+  border: none;
+  cursor: pointer;
+}
+
 /* 共通レイアウト ================================ */
 body {
   color: #2d3133;
@@ -30,6 +41,14 @@ body {
   background-color: #f5f8fa;
 }
 
+.container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  clear: both;
+}
+
 .header-menus {
   float: right;
   padding-right: 20px;
@@ -41,4 +60,17 @@ body {
   font-size: 18px;
   color: white;
   padding-left: 15px;
+}
+
+.form input[type="submit"] {
+  background-color: #3ecdc6;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 300;
+  width: 120px;
+  border-radius: 2px;
+  margin-top: 8px;
+  margin-bottom: 0;
+  float: right;
 }
