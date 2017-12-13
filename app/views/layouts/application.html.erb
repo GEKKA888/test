@@ -9,6 +9,18 @@
   </head>
 
   <body>
+    <header>
+      <ul class="header-menus">
+        <li><%= link_to("新規タスク登録", "/posts/new") %></li>
+        <li><%= link_to("タスク一覧", "/") %></li>
+      </ul>
+      </div>
+    </header>
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
