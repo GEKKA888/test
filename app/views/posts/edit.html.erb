@@ -10,11 +10,18 @@
             </div>
           <% end %>
           <p>
-            タイトル<textarea name="title"><%=@post.title%></textarea>
+            <!--タイトル<textarea name="title"></textarea>-->
+            タイトル<%= text_field_tag :title ,@post.title%>
           </p>
           <p>
-            内容<textarea name="content"><%=@post.content%></textarea>
-          </p><br>
+            <!--内容<textarea name="content"></textarea>-->
+            内容<%= text_area_tag :content ,@post.content%>
+          </p>
+          <p>
+            <!--締め切り<textarea name="deadline"></textarea>-->
+            締め切り<%= date_field_tag :deadline ,@post.deadline%>
+          </p>
+          <br>
           <input type="submit" value="保存">
         </div>
       </div>
