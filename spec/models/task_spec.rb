@@ -12,4 +12,19 @@ describe Task do
     )
     expect(task).to be_valid
   end
+  it "titleが無ければ無効であること" do
+    task = Task.new(
+      title: nil,
+    )
+    task.valid?
+    expect(task.errors[:title]).to include("can't be blank")
+  end
+  it "contentが無ければ無効であること" do
+    task = Task.new(
+      content: nil,
+    )
+    task.valid?
+    expect(task.errors[:content]).to include("can't be blank")
+  end
+
 end
