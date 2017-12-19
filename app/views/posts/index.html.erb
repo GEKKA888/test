@@ -3,6 +3,7 @@
     <% @posts.each do |post| %>
     <div class="posts-index-item">
       <%= link_to(post.title, "/posts/#{post.id}") %>
+      <%= post.deadline %>
     </div>
     <% end %>
   </div>

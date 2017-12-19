@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Task.new(title:params[:title],content:params[:content])
+    @post = Task.new(title:params[:title],content:params[:content],deadline:params[:deadline])
     if @post.save
       flash[:notice] = "タスクを登録しました"
       redirect_to("/")
@@ -29,6 +29,7 @@ class PostsController < ApplicationController
     @post = Task.find_by(id:params[:id])
     @post.title = params[:title]
     @post.content = params[:content]
+    @post.deadline = params[:deadline]
     if @post.save
       flash[:notice] = "タスクを編集しました"
       redirect_to("/")
