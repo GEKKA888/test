@@ -6,6 +6,7 @@
           <th><%= sortable "title", "タイトル" %></th>
           <th><%= sortable "deadline", "締め切り" %></th>
           <th><%= sortable "created_at", "登録日" %></th>
+          <th><%= sortable "status", "ステータス" %></th>
         </tr>
       </thead>
 
@@ -15,6 +16,7 @@
             <td class="posts-index-item"><%= link_to(post.title, "/posts/#{post.id}") %></td>
             <td class="posts-index-item"><%= post.deadline %></td>
             <td class="posts-index-item"><%= post.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+            <td class="posts-index-item"><%= post.status%></td>
           </tr>
         <% end %>
       </tbody>

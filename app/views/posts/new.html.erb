@@ -21,9 +21,10 @@
           <!--締め切り<textarea name="deadline"></textarea>-->
           締め切り<%= date_field_tag :deadline %>
         </p>
-        <label><%= radio_button_tag :state, "1" %> 未着手 </label>
-        <label><%= radio_button_tag :state, "2" %> 着手中 </label>
-        <label><%= radio_button_tag :state, "3" %> 完了 </label>
+
+        <label><%= radio_button_tag(:state, "1" ,true)%> 未着手 </label>
+        <label><%= radio_button_tag(:state, "2" )%> 着手中 </label>
+        <label><%= radio_button_tag(:state, "3" )%> 完了 </label>
         <br>
         <input type="submit" value="投稿">
       </div>
