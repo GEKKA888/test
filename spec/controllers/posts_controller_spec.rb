@@ -11,13 +11,6 @@ RSpec.describe PostsController, type: :controller do
         expect(response.status).to eq 200
       end
 
-      it 'タスクをcreated_at降順で並べ替える' do
-        create(:task,id: 1)
-        create(:task,id: 2)
-        expect(PostsController.order(created_at: :desc).map(&:id)).to eq [1, 2]
-
-      end
-
       it '該当するビューが描画されていること' do
         expect(response).to render_template :index
       end
