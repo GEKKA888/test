@@ -34,9 +34,4 @@ describe Task do
     task.valid?
     expect(task.errors[:deadline]).to include("を入力してください")
   end
-  it 'タスクをcreated_at降順で並べ替える' do
-    create(:task,id: 1)
-    create(:task,id: 2)
-    expect(Task.all.map(&:id)).to eq [1,2]
-  end
 end
