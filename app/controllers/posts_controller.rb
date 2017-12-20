@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
+helper_method :sort_column, :sort_direction
+
   def index
-    @posts = Task.all.order(created_at: :desc)
+    #@posts = Task.all.order(created_at: :desc)
+    @posts = Task.all.order(sort_column + ' ' + sort_direction)
   end
 
   def show
@@ -45,4 +48,13 @@ class PostsController < ApplicationController
     redirect_to("/")
   end
 
+  private
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "desc"
+    end
+
+    def sort_column
+        Task.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+    end
 end
