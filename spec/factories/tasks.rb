@@ -4,6 +4,11 @@ FactoryGirl.define do
     content "hogehoge"
     deadline "2018-01-01"
   end
+  factory :task2, class: Task do
+    title "hoge"
+    content "hogehogehoge"
+    deadline "2018-01-02"
+  end
   factory :taska, class: Task do
     title "fugafugafugafugafugafugafugafugafugafugafugafugafuga"
     content "hogehoge"
