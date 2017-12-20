@@ -5,7 +5,6 @@ RSpec.describe PostsController, type: :controller do
     describe 'GETメソッドのindexアクションについて' do
 
       before do
-
         get :index
       end
       it 'リクエストは200 OKとなること' do
