@@ -33,6 +33,7 @@ helper_method :sort_column, :sort_direction
     @post.title = params[:title]
     @post.content = params[:content]
     @post.deadline = params[:deadline]
+    @post.status = params[:status]
     if @post.save
       flash[:notice] = "タスクを編集しました"
       redirect_to("/")
