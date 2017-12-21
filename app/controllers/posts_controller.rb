@@ -15,7 +15,7 @@ helper_method :sort_column, :sort_direction
   end
 
   def create
-    @post = Task.new(title:params[:title],content:params[:content],deadline:params[:deadline])
+    @post = Task.new(title:params[:title],content:params[:content],deadline:params[:deadline],status:params[:status])
     if @post.save
       flash[:notice] = "タスクを登録しました"
       redirect_to("/")
@@ -33,6 +33,7 @@ helper_method :sort_column, :sort_direction
     @post.title = params[:title]
     @post.content = params[:content]
     @post.deadline = params[:deadline]
+    @post.status = params[:status]
     if @post.save
       flash[:notice] = "タスクを編集しました"
       redirect_to("/")

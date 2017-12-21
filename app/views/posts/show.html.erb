@@ -13,6 +13,18 @@
       <div class="deadline">
         締め切り <%= @post.deadline%>
       </div>
+      <!--ステータス読み替え-->
+      <%if @post.status == 1
+        status_trans = "未着手"
+      elsif @post.status == 2
+        status_trans = "着手中"
+      elsif  @post.status == 3
+        status_trans = "完了"
+        else status_trans = nil
+        end%>
+      <div class="status">
+        ステータス :<%= status_trans%>
+      </div>
       <div class="post-menus">
         <%= link_to("編集", "/posts/#{@post.id}/edit") %>
         <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
