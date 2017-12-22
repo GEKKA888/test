@@ -9,15 +9,12 @@
               <%= message %>
             </div>
           <% end %>
-          <p>
-            タイトル<%= text_field_tag :title ,@post.title%>
-          </p>
-          <p>
-            内容<%= text_area_tag :content ,@post.content%>
-          </p>
-          <p>
-            締め切り<%= date_field_tag :deadline ,@post.deadline%>
-          </p>
+          <p>タイトル</p>
+          <%= text_field_tag :title ,@post.title%>
+          <p>内容</p>
+          <%= text_area_tag :content ,@post.content%>
+          <p>締め切り</p>
+          <%= date_field_tag :deadline ,@post.deadline%>
           <!--編集前のステータス確認用変数num-->
           <%if @post.status == "未着手"
             num = [true,false,false]
@@ -27,6 +24,7 @@
             num = [false,false,true]
             else num = [false,false,false]
             end%>
+          <br>
           <label><%= radio_button_tag(:status, :未着手, checked = num[0])%> 未着手 </label>
           <label><%= radio_button_tag(:status, :着手中, checked = num[1])%> 着手中 </label>
           <label><%= radio_button_tag(:status, :完了, checked = num[2])%> 完了 </label>
@@ -43,7 +41,7 @@
           <label><%= radio_button_tag(:priority, :中, checked = num2[1])%> 中 </label>
           <label><%= radio_button_tag(:priority, :小, checked = num2[2])%> 小 </label>
           <br>
-          <input type="submit" value="保存">
+          <input class="btn btn-success btn-sm" type="submit" value="保存">
         </div>
       </div>
       <% end %>

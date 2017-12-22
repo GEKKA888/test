@@ -1,30 +1,31 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 ul, li {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-
+/*
 a {
   text-decoration: none;
   color: #2d3133;
   font-size: 14px;
 }
 
-
 input {
   background-color: transparent;
   outline-width: 0;
 }
-
+*/
 form input[type="submit"] {
   border: none;
   cursor: pointer;
 }
 
 /* 共通レイアウト ================================ */
+/*
 body {
   color: #2d3133;
   background-color: #3ecdc6;
@@ -40,7 +41,7 @@ body {
   min-height: 100%;
   background-color: #f5f8fa;
 }
-
+*/
 .container {
   max-width: 600px;
   margin: 60px auto;
@@ -61,7 +62,7 @@ body {
   color: white;
   padding-left: 15px;
 }
-
+/*
 .form input[type="submit"] {
   background-color: #3ecdc6;
   color: white;
@@ -74,3 +75,4 @@ body {
   margin-bottom: 0;
   float: right;
 }
+*/

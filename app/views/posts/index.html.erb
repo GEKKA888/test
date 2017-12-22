@@ -1,27 +1,29 @@
 <div class="main posts-index">
   <div class="container">
-    <table>
-      <thead>
-        <tr>
-          <th><%= sortable "title", "タイトル" %></th>
-          <th><%= sortable "deadline", "締め切り" %></th>
-          <th><%= sortable "created_at", "登録日" %></th>
-          <th><%= sortable "status", "ステータス" %></th>
-          <th><%= sortable "priority", "優先度" %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @posts.each do |post| %>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <td class="posts-index-item"><%= link_to(post.title, "/posts/#{post.id}") %></td>
-            <td class="posts-index-item"><%= post.deadline %></td>
-            <td class="posts-index-item"><%= post.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-            <td class="posts-index-item"><%= post.status%></td>
-            <td class="posts-index-item"><%= post.priority%></td>
+            <th><%= sortable "title", "タイトル" %></th>
+            <th><%= sortable "deadline", "締め切り" %></th>
+            <th><%= sortable "created_at", "登録日" %></th>
+            <th><%= sortable "status", "ステータス" %></th>
+            <th><%= sortable "priority", "優先度" %></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td class="posts-index-item"><%= link_to(post.title, "/posts/#{post.id}") %></td>
+              <td class="posts-index-item"><%= post.deadline %></td>
+              <td class="posts-index-item"><%= post.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+              <td class="posts-index-item"><%= post.status%></td>
+              <td class="posts-index-item"><%= post.priority%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
     <%= paginate @posts %>
   </div>
 </div>
