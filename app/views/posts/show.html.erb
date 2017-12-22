@@ -4,9 +4,9 @@
       <h3>
         <%= @post.title%>
       </h3>
-      <p>
+      <h6>
         <%= @post.content%>
-      </p>
+      </h6>
       <div class="post-time">
         <%= @post.created_at.strftime("登録日 %Y-%m-%d %H:%M:%S") %>
       </div>
@@ -20,8 +20,8 @@
         優先度 :<%= @post.priority%>
       </div>
       <div class="post-menus">
-        <%= link_to("編集", "/posts/#{@post.id}/edit") %>
-        <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
+        <button type="button" class="btn btn-default"><%= link_to("編集", "/posts/#{@post.id}/edit") %></button>
+        <button type="button" class="btn btn-default"><%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %></button>
       </div>
     </div>
   </div>

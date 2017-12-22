@@ -9,18 +9,13 @@
               <%= message %>
             </div>
           <% end %>
-        <p>
-          <!--タイトル<textarea name="title"></textarea>-->
-          タイトル<%= text_field_tag :title %>
-        </p>
-        <p>
-          <!--内容<textarea name="content"></textarea>-->
-          内容<%= text_area_tag :content %>
-        </p>
-        <p>
-          <!--締め切り<textarea name="deadline"></textarea>-->
-          締め切り<%= date_field_tag :deadline %>
-        </p>
+        <p>タイトル</p>
+        <%= text_field_tag :title %>
+        <p>内容</p>
+        <%= text_area_tag :content %>
+        <p>締め切り</p>
+        <%= date_field_tag :deadline %>
+        <br>
         <label><%= radio_button_tag(:status, :未着手,true)%> 未着手 </label>
         <label><%= radio_button_tag(:status, :着手中)%> 着手中 </label>
         <label><%= radio_button_tag(:status, :完了)%> 完了 </label>
@@ -29,7 +24,7 @@
         <label><%= radio_button_tag(:priority, :中)%> 中 </label>
         <label><%= radio_button_tag(:priority, :小)%> 小 </label>
         <br>
-        <input type="submit" value="投稿">
+        <input class="btn btn-success btn-sm" type="submit" value="投稿">
       </div>
     </div>
     <% end %>
