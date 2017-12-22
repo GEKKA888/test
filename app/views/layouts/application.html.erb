@@ -10,13 +10,14 @@
   </head>
 
   <body>
-    <header>
-      <ul class="header-menus">
-        <li><%= link_to("新規タスク登録", "/posts/new") %></li>
-        <li><%= link_to("タスク一覧", "/") %></li>
-      </ul>
-      </div>
-    </header>
+      <header>
+        <ul class="header-menus">
+          <li><%= link_to("新規タスク登録", "/posts/new") %></li>
+          <li><%= link_to("タスク一覧", "/") %></li>
+          <li><%= link_to("ユーザー一覧", "/users/index") %></li>
+          <li><%= link_to("新規登録", "/signup") %></li>
+        </ul>
+      </header>
     <% if flash[:notice] %>
       <div class="flash">
         <%= flash[:notice] %>
