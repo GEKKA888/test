@@ -24,6 +24,10 @@
         <label><%= radio_button_tag(:status, :未着手,true)%> 未着手 </label>
         <label><%= radio_button_tag(:status, :着手中)%> 着手中 </label>
         <label><%= radio_button_tag(:status, :完了)%> 完了 </label>
+        <br>優先度
+        <label><%= radio_button_tag(:priority, :大)%> 大 </label>
+        <label><%= radio_button_tag(:priority, :中)%> 中 </label>
+        <label><%= radio_button_tag(:priority, :小)%> 小 </label>
         <br>
         <input type="submit" value="投稿">
       </div>

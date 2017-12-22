@@ -30,6 +30,18 @@
           <label><%= radio_button_tag(:status, :未着手, checked = num[0])%> 未着手 </label>
           <label><%= radio_button_tag(:status, :着手中, checked = num[1])%> 着手中 </label>
           <label><%= radio_button_tag(:status, :完了, checked = num[2])%> 完了 </label>
+          <br>優先度：
+          <%if @post.priority == "大"
+            num2 = [true,false,false]
+          elsif @post.priority == "中"
+            num2 = [false,true,false]
+          elsif  @post.priority == "小"
+            num2 = [false,false,true]
+          else num2 = [false,false,false]
+            end%>
+          <label><%= radio_button_tag(:priority, :大, checked = num2[0])%> 大 </label>
+          <label><%= radio_button_tag(:priority, :中, checked = num2[1])%> 中 </label>
+          <label><%= radio_button_tag(:priority, :小, checked = num2[2])%> 小 </label>
           <br>
           <input type="submit" value="保存">
         </div>

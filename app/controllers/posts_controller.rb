@@ -3,7 +3,9 @@ helper_method :sort_column, :sort_direction
 
   def index
     #@posts = Task.all.order(created_at: :desc)
-    @posts = Task.all.order(sort_column + ' ' + sort_direction)
+    #@posts = Task.all.order(sort_column + ' ' + sort_direction)
+    @posts = Task.page(params[:page]).per(6).all.order(sort_column + ' ' + sort_direction)
+
   end
 
   def show
@@ -15,7 +17,7 @@ helper_method :sort_column, :sort_direction
   end
 
   def create
-    @post = Task.new(title:params[:title],content:params[:content],deadline:params[:deadline],status:params[:status])
+    @post = Task.new(title:params[:title],content:params[:content],deadline:params[:deadline],status:params[:status],priority:params[:priority])
     if @post.save
       flash[:notice] = "タスクを登録しました"
       redirect_to("/")
@@ -34,6 +36,7 @@ helper_method :sort_column, :sort_direction
     @post.content = params[:content]
     @post.deadline = params[:deadline]
     @post.status = params[:status]
+    @post.priority = params[:priority]
     if @post.save
       flash[:notice] = "タスクを編集しました"
       redirect_to("/")

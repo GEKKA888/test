@@ -16,6 +16,9 @@
       <div class="status">
         ステータス :<%= @post.status%>
       </div>
+      <div class="priority">
+        優先度 :<%= @post.priority%>
+      </div>
       <div class="post-menus">
         <%= link_to("編集", "/posts/#{@post.id}/edit") %>
         <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
