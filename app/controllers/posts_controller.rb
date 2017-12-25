@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
+before_action :authenticate_user
 helper_method :sort_column, :sort_direction
 
   def index
     #@posts = Task.all.order(created_at: :desc)
     #@posts = Task.all.order(sort_column + ' ' + sort_direction)
     @posts = Task.page(params[:page]).per(6).all.order(sort_column + ' ' + sort_direction)
-
   end
 
   def show
