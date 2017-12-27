@@ -8,13 +8,13 @@
             <%= message %>
           </div>
         <% end %>
-        <%= form_tag("/users/#{@user.id}/update") do %>
+        <%= form_tag user_path(@user), {method: :put} do %>
           <p>ユーザー名</p>
-          <%= text_field_tag :name ,@user.name%>
+          <%= text_field_tag :name, @user.name %>
           <p>メールアドレス</p>
-          <%= text_field_tag :email ,@user.email%>
-          <input type="submit" value="保存">
-        <% end%>
+          <%= text_field_tag :email, @user.email %>
+          <%=submit_tag("保存")%>
+        <% end %>
       </div>
     </div>
   </div>

@@ -9,7 +9,7 @@
           </div>
         <% end %>
 
-        <%= form_tag("/users/create") do %>
+        <%= form_tag users_path do %>
           <p>ユーザー名</p>
           <%= text_field_tag :name, @user.name%>
           <p>メールアドレス</p>
