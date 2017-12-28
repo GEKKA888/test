@@ -49,7 +49,7 @@ helper_method :sort_column, :sort_direction
     @post = Task.find_by(id:params[:id])
     @post.destroy
     flash[:notice] = "タスクを削除しました"
-    redirect_to("/posts")
+    redirect_to posts_path
   end
 
   private
