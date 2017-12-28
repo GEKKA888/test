@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
+before_action :authenticate_user
 helper_method :sort_column, :sort_direction
 
   def index
     #@posts = Task.all.order(created_at: :desc)
     #@posts = Task.all.order(sort_column + ' ' + sort_direction)
     @posts = Task.page(params[:page]).per(6).all.order(sort_column + ' ' + sort_direction)
-
   end
 
   def show
@@ -20,9 +20,9 @@ helper_method :sort_column, :sort_direction
     @post = Task.new(title:params[:title],content:params[:content],deadline:params[:deadline],status:params[:status],priority:params[:priority])
     if @post.save
       flash[:notice] = "タスクを登録しました"
-      redirect_to("/")
+      redirect_to posts_path
     else
-      render("posts/new")
+      render new_post_path
     end
   end
 
@@ -39,9 +39,9 @@ helper_method :sort_column, :sort_direction
     @post.priority = params[:priority]
     if @post.save
       flash[:notice] = "タスクを編集しました"
-      redirect_to("/")
+      redirect_to posts_path
     else
-      render("posts/edit")
+      render ("edit")
     end
   end
 
@@ -49,7 +49,7 @@ helper_method :sort_column, :sort_direction
     @post = Task.find_by(id:params[:id])
     @post.destroy
     flash[:notice] = "タスクを削除しました"
-    redirect_to("/")
+    redirect_to("/posts")
   end
 
   private

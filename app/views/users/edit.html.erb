@@ -1,0 +1,21 @@
+<div class="main users-edit">
+  <div class="container">
+    <div class="form-heading">アカウント編集</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <% @user.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+        <%= form_tag user_path(@user), {method: :put} do %>
+          <p>ユーザー名</p>
+          <%= text_field_tag :name, @user.name %>
+          <p>メールアドレス</p>
+          <%= text_field_tag :email, @user.email %>
+          <%=submit_tag("保存")%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
