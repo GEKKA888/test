@@ -7,6 +7,9 @@
       <h6>
         <%= @post.content%>
       </h6>
+      <div class="post-user-name">
+        <%= link_to(@user.name, user_path(@user))%>
+      </div>
       <div class="post-time">
         <%= @post.created_at.strftime("登録日 %Y-%m-%d %H:%M:%S") %>
       </div>
@@ -21,7 +24,7 @@
       </div>
       <div class="post-menus">
         <button type="button" class="btn btn-default"><%= link_to("編集", "/posts/#{@post.id}/edit") %></button>
-        <button type="button" class="btn btn-default"><%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %></button>
+        <button type="button" class="btn btn-default"><%= link_to("削除", post_path(@post), {method: :delete}) %></button>
       </div>
     </div>
   </div>

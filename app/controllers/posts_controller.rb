@@ -5,11 +5,12 @@ helper_method :sort_column, :sort_direction
   def index
     #@posts = Task.all.order(created_at: :desc)
     #@posts = Task.all.order(sort_column + ' ' + sort_direction)
-    @posts = Task.page(params[:page]).per(6).all.order(sort_column + ' ' + sort_direction)
+    @posts = Task.page(params[:page]).per(6).all.includes(:user).order(sort_column + ' ' + sort_direction)
   end
 
   def show
     @post = Task.find_by(id:params[:id])
+    @user = User.find_by(id: @post.user_id)
   end
 
   def new
@@ -17,7 +18,12 @@ helper_method :sort_column, :sort_direction
   end
 
   def create
-    @post = Task.new(title:params[:title],content:params[:content],deadline:params[:deadline],status:params[:status],priority:params[:priority])
+    @post = Task.new(title:params[:title],
+      content:params[:content],
+      deadline:params[:deadline],
+      status:params[:status],
+      priority:params[:priority],
+      user_id:@current_user.id)
     if @post.save
       flash[:notice] = "タスクを登録しました"
       redirect_to posts_path
