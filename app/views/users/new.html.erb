@@ -11,11 +11,11 @@
 
         <%= form_tag users_path do %>
           <p>ユーザー名</p>
-          <%= text_field_tag :name, @user.name%>
+          <%= text_field_tag :name%>
           <p>メールアドレス</p>
-          <%= text_field_tag :email, @user.email%>
+          <%= text_field_tag :email%>
           <p>パスワード</p>
-          <%= password_field_tag :password, @user.password%>
+          <%= password_field_tag :password%>
           <input type="submit" value="新規登録">
         <% end %>
       </div>
