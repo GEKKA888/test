@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 before_action :authenticate_user
+before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 helper_method :sort_column, :sort_direction
 
   def index
@@ -56,6 +57,14 @@ helper_method :sort_column, :sort_direction
     @post.destroy
     flash[:notice] = "タスクを削除しました"
     redirect_to posts_path
+  end
+
+  def ensure_correct_user
+    @post = Task.find_by(id: params[:id])
+    if @current_user.id != @post.user_id
+      flash[:notice] = "権限がありません"
+      redirect_to posts_path
+    end
   end
 
   private
