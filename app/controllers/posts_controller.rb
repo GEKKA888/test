@@ -19,12 +19,8 @@ helper_method :sort_column, :sort_direction
   end
 
   def create
-    @post = Task.new(title:params[:title],
-      content:params[:content],
-      deadline:params[:deadline],
-      status:params[:status],
-      priority:params[:priority],
-      user_id:@current_user.id)
+    @post = Task.new(post_params)
+    @post.user_id = @current_user.id
     if @post.save
       flash[:notice] = "タスクを登録しました"
       redirect_to posts_path
@@ -39,11 +35,8 @@ helper_method :sort_column, :sort_direction
 
   def update
     @post = Task.find_by(id:params[:id])
-    @post.title = params[:title]
-    @post.content = params[:content]
-    @post.deadline = params[:deadline]
-    @post.status = params[:status]
-    @post.priority = params[:priority]
+    @post.update_attributes(post_params)
+
     if @post.save
       flash[:notice] = "タスクを編集しました"
       redirect_to posts_path
@@ -61,7 +54,7 @@ helper_method :sort_column, :sort_direction
 
   def ensure_correct_user
     @post = Task.find_by(id: params[:id])
-    if @current_user.id != @post.user_id
+    if !@current_user.tasks.find(params[:id])
       flash[:notice] = "権限がありません"
       redirect_to posts_path
     end
@@ -74,6 +67,10 @@ helper_method :sort_column, :sort_direction
     end
 
     def sort_column
-        Task.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+      Task.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+    end
+
+    def post_params
+      params.require(:task).permit(:title, :content, :deadline, :status, :priority)
     end
 end

@@ -8,12 +8,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(name:params[:name],email:params[:email],password: params[:password])
+    @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "ユーザーが登録されました"
       redirect_to user_path(@user)
-      #redirect_to("/users/#{@user.id}")
     else
       render new_user_path
     end
@@ -33,8 +32,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    @user.name = params[:name]
-    @user.email = params[:email]
+    @user.update_attributes(user_params)
     if @user.save
       flash[:notice] = "ユーザーが更新されました"
       redirect_to user_path(@user)
@@ -49,4 +47,10 @@ class UsersController < ApplicationController
       redirect_to posts_path
     end
   end
+
+  private
+
+   def user_params
+     params.require(:user).permit(:name, :email, :password)
+   end
 end
