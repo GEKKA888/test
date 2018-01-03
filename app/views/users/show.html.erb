@@ -4,8 +4,30 @@
       <h2><%= @user.name %></h2>
       <p><%= @user.email %></p>
       <%if @user.id == @current_user.id %>
-      <%= link_to("編集", edit_user_path(id: @current_user.id)) %>
+      <%= link_to("編集", edit_user_path(@current_user)) %>
       <%end%>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th><%= "タイトル" %></th>
+              <th><%= "締め切り" %></th>
+              <th><%= "登録日" %></th>
+              <th><%= "ステータス" %></th>
+              <th><%= "優先度" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user.tasks.each do |task| %>
+              <tr>
+                <td class="posts-index-item"><%= link_to(task.title, post_path(task)) %></td>
+                <td class="posts-index-item"><%= task.deadline %></td>
+                <td class="posts-index-item"><%= task.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+                <td class="posts-index-item"><%= task.status%></td>
+                <td class="posts-index-item"><%= task.priority%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
     </div>
   </div>
 </div>

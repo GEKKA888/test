@@ -1,7 +1,7 @@
 <div class="main posts-new">
   <div class="container">
     <h1 class="form-heading">編集する</h1>
-      <%= form_tag post_path(@post), {method: :put} do %>
+      <%= form_for(@post, url: post_path(@post), html: {method: :put}) do |f|%>
       <div class="form">
         <div class="form-body">
           <% @post.errors.full_messages.each do |message| %>
@@ -10,11 +10,11 @@
             </div>
           <% end %>
           <p>タイトル</p>
-          <%= text_field_tag :title ,@post.title%>
+          <%= f.text_field :title %>
           <p>内容</p>
-          <%= text_area_tag :content ,@post.content%>
+          <%= f.text_area :content %>
           <p>締め切り</p>
-          <%= date_field_tag :deadline ,@post.deadline%>
+          <%= f.date_field :deadline %>
           <!--編集前のステータス確認用変数num-->
           <%if @post.status == "未着手"
             num = [true,false,false]
@@ -25,9 +25,9 @@
             else num = [false,false,false]
             end%>
           <br>
-          <label><%= radio_button_tag(:status, :未着手, checked = num[0])%> 未着手 </label>
-          <label><%= radio_button_tag(:status, :着手中, checked = num[1])%> 着手中 </label>
-          <label><%= radio_button_tag(:status, :完了, checked = num[2])%> 完了 </label>
+          <label><%= f.radio_button(:status, :未着手, {:checked => num[0]})%> 未着手 </label>
+          <label><%= f.radio_button(:status, :着手中, {:checked => num[1]})%> 着手中 </label>
+          <label><%= f.radio_button(:status, :完了, {:checked => num[2]})%> 完了 </label>
           <br>優先度：
           <%if @post.priority == "大"
             num2 = [true,false,false]
@@ -37,9 +37,9 @@
             num2 = [false,false,true]
           else num2 = [false,false,false]
             end%>
-          <label><%= radio_button_tag(:priority, :大, checked = num2[0])%> 大 </label>
-          <label><%= radio_button_tag(:priority, :中, checked = num2[1])%> 中 </label>
-          <label><%= radio_button_tag(:priority, :小, checked = num2[2])%> 小 </label>
+          <label><%= f.radio_button(:priority, :大, {:checked => num2[0]})%> 大 </label>
+          <label><%= f.radio_button(:priority, :中, {:checked => num2[1]})%> 中 </label>
+          <label><%= f.radio_button(:priority, :小, {:checked => num2[2]})%> 小 </label>
           <br>
           <input class="btn btn-success btn-sm" type="submit" value="保存">
         </div>

@@ -1,7 +1,7 @@
 <div class="main posts-new">
   <div class="container">
     <h1 class="form-heading">投稿する</h1>
-    <%= form_tag posts_path do %>
+    <%= form_for(@post, url: posts_path) do |f| %>
     <div class="form">
       <div class="form-body">
         <% @post.errors.full_messages.each do |message| %>
@@ -10,19 +10,19 @@
             </div>
           <% end %>
         <p>タイトル</p>
-        <%= text_field_tag :title %>
+        <%= f.text_field :title %>
         <p>内容</p>
-        <%= text_area_tag :content %>
+        <%= f.text_area :content %>
         <p>締め切り</p>
-        <%= date_field_tag :deadline %>
+        <%= f.date_field :deadline %>
         <br>
-        <label><%= radio_button_tag(:status, :未着手,true)%> 未着手 </label>
-        <label><%= radio_button_tag(:status, :着手中)%> 着手中 </label>
-        <label><%= radio_button_tag(:status, :完了)%> 完了 </label>
+        <label><%= f.radio_button(:status, :未着手,{:checked => true})%> 未着手 </label>
+        <label><%= f.radio_button(:status, :着手中)%> 着手中 </label>
+        <label><%= f.radio_button(:status, :完了)%> 完了 </label>
         <br>優先度
-        <label><%= radio_button_tag(:priority, :大)%> 大 </label>
-        <label><%= radio_button_tag(:priority, :中)%> 中 </label>
-        <label><%= radio_button_tag(:priority, :小)%> 小 </label>
+        <label><%= f.radio_button(:priority, :大)%> 大 </label>
+        <label><%= f.radio_button(:priority, :中)%> 中 </label>
+        <label><%= f.radio_button(:priority, :小)%> 小 </label>
         <br>
         <input class="btn btn-success btn-sm" type="submit" value="投稿">
       </div>
