@@ -20,9 +20,8 @@
             <li><%= link_to("新規タスク登録", new_post_path) %></li>
             <li><%= link_to("タスク一覧", posts_path) %></li>
             <li><%= link_to("ユーザー一覧", users_path) %></li>
-            <!--<li><%= link_to("ユーザー一覧", "/users/index") %></li>-->
             <li><%= link_to("ログアウト", session_path(@current_user), {method: :delete}) %></li>
-            <!--<li><%= link_to("ログアウト", "/logout", {method: :post}) %></li>-->
+            <li><%= link_to "Admin", admin_users_path %></li>
           <% else %>
             <li><%= link_to("新規登録", new_user_path) %></li>
             <li><%= link_to("ログイン", new_session_path)%></li>
