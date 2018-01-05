@@ -4,4 +4,5 @@ class User < ApplicationRecord
   validates :password, presence: true
 
   has_many :tasks, dependent: :destroy
+  enum user_type: { admin: 1, normal: 2 }
 end

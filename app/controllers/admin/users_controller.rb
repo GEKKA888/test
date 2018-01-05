@@ -3,7 +3,26 @@ class Admin::UsersController < AdminController
     @users = User.all
   end
 
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      flash[:notice] = "ユーザーが登録されました"
+      redirect_to admin_users_path
+    else
+      render new_admin_user_path
+    end
+  end
+
   def edit
+    @user = User.find_by(id: params[:id])
+  end
+
+  def show
     @user = User.find_by(id: params[:id])
   end
 
@@ -20,7 +39,6 @@ class Admin::UsersController < AdminController
 
   def destroy
     @user = User.find_by(id: params[:id])
-    #@user.tasks.destroy_all
     @user.destroy
     flash[:notice] = "ユーザーが削除されました"
     redirect_to admin_users_path
@@ -29,6 +47,6 @@ class Admin::UsersController < AdminController
   private
 
    def user_params
-     params.require(:user).permit(:name, :email, :password)
+     params.require(:user).permit(:name, :email, :password, :user_type)
    end
 end

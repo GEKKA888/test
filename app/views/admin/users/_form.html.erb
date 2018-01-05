@@ -12,5 +12,9 @@
       <td><%= f.label :password, t('.password') %></td>
       <td><%= f.text_field :password  %></td>
     </tr>
+    <tr>
+      <td><%= f.label :user_type, t('.user_type') %></td>
+      <td><%= f.select :user_type, User.user_types.keys %></td>
+    </tr>
   </table>
 </div>
