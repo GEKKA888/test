@@ -11,6 +11,7 @@
 
   <body>
       <ul class="header-menus">
+        <li><%= link_to("新規ユーザー登録", new_admin_user_path) %></li>
         <li><%= link_to "Personal", posts_path %></li>
       </ul>
       <% if flash[:notice] %>

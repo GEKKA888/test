@@ -19,13 +19,14 @@
             <li><%= link_to(@current_user.name, user_path(@current_user))%></li>
             <li><%= link_to("新規タスク登録", new_post_path) %></li>
             <li><%= link_to("タスク一覧", posts_path) %></li>
-            <li><%= link_to("ユーザー一覧", users_path) %></li>
             <li><%= link_to("ログアウト", session_path(@current_user), {method: :delete}) %></li>
-            <li><%= link_to "Admin", admin_users_path %></li>
+            <% if @current_user.user_type == "admin" %>
+              <li><%= link_to "Admin", admin_users_path %></li>
+            <% end %>
           <% else %>
-            <li><%= link_to("新規登録", new_user_path) %></li>
+            <li><%= link_to("新規ユーザー登録", new_user_path) %></li>
             <li><%= link_to("ログイン", new_session_path)%></li>
-          <%end%>
+          <% end %>
         </ul>
       </header>
     <% if flash[:notice] %>
