@@ -6,7 +6,9 @@ helper_method :sort_column, :sort_direction
   def index
     #@posts = Task.all.order(created_at: :desc)
     #@posts = Task.all.order(sort_column + ' ' + sort_direction)
-    @posts = Task.page(params[:page]).per(6).all.includes(:user).order(sort_column + ' ' + sort_direction)
+    search
+    @posts = @posts.page(params[:page]).per(6).includes(:user).order(sort_column + ' ' + sort_direction)
+    #@posts = Task.page(params[:page]).per(6).all.includes(:user).order(sort_column + ' ' + sort_direction)
   end
 
   def show
@@ -72,5 +74,21 @@ helper_method :sort_column, :sort_direction
 
     def post_params
       params.require(:task).permit(:title, :content, :deadline, :status, :priority)
+    end
+
+    def search
+      status = params[:status]
+      word = params[:word]
+
+      @posts = Task.all
+      #@posts = @current_user.tasks
+
+      unless status.blank?
+        @posts = @posts.where(status: status)
+      end
+
+      unless word.blank?
+        @posts = @posts.search(word)
+      end
     end
 end
