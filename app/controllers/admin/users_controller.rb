@@ -1,4 +1,7 @@
 class Admin::UsersController < AdminController
+  before_action :authenticate_user
+  before_action :forbid_normal_user
+
   def index
     @users = User.all
   end
@@ -10,7 +13,6 @@ class Admin::UsersController < AdminController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id
       flash[:notice] = "ユーザーが登録されました"
       redirect_to admin_users_path
     else
@@ -39,9 +41,14 @@ class Admin::UsersController < AdminController
 
   def destroy
     @user = User.find_by(id: params[:id])
-    @user.destroy
-    flash[:notice] = "ユーザーが削除されました"
-    redirect_to admin_users_path
+    if @user != @current_user
+      @user.destroy
+      flash[:notice] = "ユーザーが削除されました"
+      redirect_to admin_users_path
+    else
+      flash[:notice] = "このユーザーは削除できません"
+      redirect_to admin_users_path
+    end
   end
 
   private

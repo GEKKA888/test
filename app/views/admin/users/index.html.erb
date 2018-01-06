@@ -15,12 +15,6 @@
       </thead>
 
       <tbody>
-        <% admincounter = 0 %>
-        <% @users.each do |u| %>
-          <% if u.user_type == "admin" %>
-            <% admincounter += 1 %>
-          <% end %>
-        <% end %>
         <% @users.each do |u| %>
           <tr>
             <td><%= u.id %></td>
@@ -33,10 +27,8 @@
             <td><%= u.created_at %></td>
             <td><%= u.tasks.count %></td>
             <td class="text-center">
-            <!--adminアカウントが1人以下の場合、adminアカウントを削除できないようにする処理↓-->
-            <% unless (u.user_type == "admin" && admincounter < 2)%>
+            <!--自分のadminアカウントは削除できない-->
               <%= link_to 'Delete', admin_user_path(u), method: :delete, data: { confirm: 'ユーザーを削除してもよろしいですか' }, class: 'btn btn-danger btn-new link-color' %>
-            <% end %>
             </td>
           </tr>
         <% end %>

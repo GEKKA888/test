@@ -18,13 +18,17 @@ input {
   background-color: transparent;
   outline-width: 0;
 }
-*/
+
 form input[type="submit"] {
   border: none;
   cursor: pointer;
 }
-
+*/
 /* 共通レイアウト ================================ */
+
+header {
+  background-color: #3ecdc6;
+}
 
 body {
   color: #2d3133;
