@@ -17,11 +17,11 @@ class UsersController < ApplicationController
       render new_user_path
     end
   end
-=begin
+
   def index
     @users = User.all
   end
-=end
+
   def show
     @user = User.find_by(id: params[:id])
   end

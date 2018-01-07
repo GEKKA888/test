@@ -7,7 +7,13 @@ class Task < ApplicationRecord
   enum priority: {大:100, 中:10, 小:1}
 
   belongs_to :user
-  #def user
-  #  return User.find_by(id: self.user_id)
-  #end
+
+  scope :search, ->(word) { where('tasks.title like ?', '%' + word.gsub(/[\\%_]/) { |m| "\\#{m}" } + '%') }
+
+  scope :search, lambda { |freeword|
+    where(
+      'tasks.title like :freeword or tasks.content like :freeword',
+      freeword: '%' + freeword.gsub(/[\\%_]/) { |m| "\\#{m}" } + '%'
+    )
+  }
 end
