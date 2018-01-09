@@ -3,7 +3,7 @@
   <head>
     <title>Testapp</title>
     <%= csrf_meta_tags %>
-
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -16,16 +16,33 @@
         </div>
         <ul class="header-menus">
           <% if @current_user %>
-            <li><%= link_to(@current_user.name, user_path(@current_user))%></li>
+            <li>
+              <%= link_to(user_path(@current_user)) do %>
+                <i class="fa fa-user-circle-o fa-lg" aria-hidden="true"><%=@current_user.name%></i></a>
+              <% end %>
+            </li>
             <li><%= link_to("新規タスク登録", new_post_path) %></li>
             <li><%= link_to("タスク一覧", posts_path) %></li>
-            <li><%= link_to("ログアウト", session_path(@current_user), {method: :delete}) %></li>
+            <li>
+              <%= link_to(session_path(@current_user), {method: :delete}) do %>
+              <i class="fa fa-sign-out" aria-hidden="true">ログアウト</i>
+              <% end %>
+            </li>
             <% if @current_user.user_type == "admin" %>
               <li><%= link_to "Admin", admin_users_path %></li>
             <% end %>
           <% else %>
-            <li><%= link_to("新規ユーザー登録", new_user_path) %></li>
-            <li><%= link_to("ログイン", new_session_path)%></li>
+
+            <li>
+              <%= link_to new_user_path do %>
+              <i class="fa fa-user-plus" aria-hidden="true">新規登録</i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_session_path do %>
+              <i class="fa fa-sign-in" aria-hidden="true">ログイン</i>
+              <% end %>
+            </li>
           <% end %>
         </ul>
       </header>
