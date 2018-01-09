@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  resources :labels
   resources :posts
   resources :users
   resources :sessions

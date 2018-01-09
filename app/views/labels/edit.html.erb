@@ -1,0 +1,24 @@
+<div class="main labels-edit">
+  <div class="container">
+    <div class="form-heading">ラベル編集</div>
+    <div class="form labels-form">
+      <div class="form-body">
+        <% @label.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+        <%= form_for(@label, url: label_path(@label), html: {method: "patch"}) do |f| %>
+        <%= render partial: 'form' , locals: {f: f} %>
+        <%= submit_tag("保存", class: 'btn btn-info btn-new link-color') %>
+        <%= link_to "削除", label_path, method: :delete, class: "btn btn-danger" %>
+        <% end %>
+      </div><br>
+      ==現在のラベル==<br>
+      <% @labels.pluck(:name).uniq.sort.each do |l| %>
+      <%= l %><br>
+      <% end %>
+      ==============
+    </div>
+  </div>
+</div>

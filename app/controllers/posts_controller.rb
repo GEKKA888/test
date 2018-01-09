@@ -9,6 +9,7 @@ helper_method :sort_column, :sort_direction
     search
     @posts = @posts.page(params[:page]).per(6).includes(:user).order(sort_column + ' ' + sort_direction)
     #@posts = Task.page(params[:page]).per(6).all.includes(:user).order(sort_column + ' ' + sort_direction)
+    @labels = @current_user.labels
   end
 
   def show
@@ -79,9 +80,10 @@ helper_method :sort_column, :sort_direction
     def search
       status = params[:status]
       word = params[:word]
+      label = params[:label]
 
-      @posts = Task.all
-      #@posts = @current_user.tasks
+      #@posts = Task.all
+      @posts = @current_user.tasks
 
       unless status.blank?
         @posts = @posts.where(status: status)
@@ -89,6 +91,10 @@ helper_method :sort_column, :sort_direction
 
       unless word.blank?
         @posts = @posts.search(word)
+      end
+
+      unless label.blank?
+        @posts = @posts.joins(:labels).where(labels: {name: label})
       end
     end
 end

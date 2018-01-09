@@ -1,0 +1,23 @@
+<div class="main labels-new">
+  <div class="container">
+    <div class="form-heading">ラベル登録</div>
+    <div class="form labels-form">
+      <div class="form-body">
+        <% @label.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+        <%= form_for(@label, url: labels_path) do |f| %>
+        <%= render partial: 'form' , locals: {f: f} %>
+        <%= submit_tag("登録", class: 'btn btn-info btn-new link-color') %>
+        <% end %>
+      </div><br>
+      ==現在のラベル==<br>
+      <% @labels.pluck(:name).uniq.sort.each do |l| %>
+      <%= l %><br>
+      <% end %>
+      ==============
+    </div>
+  </div>
+</div>
