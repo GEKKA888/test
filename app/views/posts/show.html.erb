@@ -24,8 +24,8 @@
       </div>
       <% if @post.user_id == @current_user.id %>
         <div class="post-menus">
-          <button type="button" class="btn btn-default"><%= link_to("編集", edit_post_path(@post)) %></button>
-          <button type="button" class="btn btn-default"><%= link_to("削除", post_path(@post), {method: :delete}) %></button>
+          <%= link_to "編集", edit_post_path(@post), class: 'btn btn-info' %>
+          <%= link_to "削除", post_path(@post), class: 'btn btn-danger', method: :delete %>
         </div>
       <% end %>
     </div>

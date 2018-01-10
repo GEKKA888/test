@@ -9,12 +9,24 @@
               <%= message %>
             </div>
           <% end %>
-          <p>タイトル</p>
-          <%= f.text_field :title %>
-          <p>内容</p>
-          <%= f.text_area :content %>
-          <p>締め切り</p>
-          <%= f.date_field :deadline %>
+          <li>
+            <div class="form-group">
+              <%= f.label :title, "タイトル"%>
+              <%= f.text_field :title, class: "form-control" %>
+            </div>
+          </li>
+          <li>
+            <div class="form-group">
+              <%= f.label :content, "内容" %>
+              <%= f.text_area :content, class: "form-control" %>
+            </div>
+            </li>
+          <li>
+            <div class="form-group">
+              <%= f.label :deadline, "締め切り" %>
+              <%= f.date_field :deadline, class: "form-control" %>
+            </div>
+          </li>
           <!--編集前のステータス確認用変数num-->
           <%if @post.status == "未着手"
             num = [true,false,false]
@@ -24,11 +36,12 @@
             num = [false,false,true]
             else num = [false,false,false]
             end%>
-          <br>
+          <h6>ステータス</h6>
           <label><%= f.radio_button(:status, :未着手, {:checked => num[0]})%> 未着手 </label>
           <label><%= f.radio_button(:status, :着手中, {:checked => num[1]})%> 着手中 </label>
           <label><%= f.radio_button(:status, :完了, {:checked => num[2]})%> 完了 </label>
-          <br>優先度：
+          <br>
+          <h6>優先度</h6>
           <%if @post.priority == "大"
             num2 = [true,false,false]
           elsif @post.priority == "中"
@@ -40,8 +53,8 @@
           <label><%= f.radio_button(:priority, :大, {:checked => num2[0]})%> 大 </label>
           <label><%= f.radio_button(:priority, :中, {:checked => num2[1]})%> 中 </label>
           <label><%= f.radio_button(:priority, :小, {:checked => num2[2]})%> 小 </label>
-          <br>
-          <input class="btn btn-success btn-sm" type="submit" value="保存">
+          <br><br>
+          <%= submit_tag("保存", class: 'btn btn-info')%>
         </div>
       </div>
       <% end %>
