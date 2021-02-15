@@ -5,8 +5,11 @@ RSpec.describe PostsController, type: :controller do
     describe 'GETメソッドのindexアクションについて' do
 
       before do
+        @user = create(:user, id:3)
+        session[:user_id] = @user.id
         get :index
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -25,6 +28,12 @@ RSpec.describe PostsController, type: :controller do
     end
 
     describe 'POSTメソッドのcreateアクションについて' do
+
+      before do
+        @user = create(:user, id:3)
+        session[:user_id] = @user.id
+      end
+
       context '有効な入力の場合' do
         it 'リクエストは302 リダイレクトとなること' do
           #post :create, params: {title: 'hoge',content: 'hogehoge'}
